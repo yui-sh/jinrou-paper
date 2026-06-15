@@ -1,0 +1,10 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented the first large-scale linguistic analysis of AI deception, analyzing 882,510 chat messages from 31,479 games of AI Werewolf played by eight frontier LLMs. Our central finding is that AI deception \emph{systematically inverts} established human deception patterns: AI liars use more first-person pronouns, write longer messages, and hedge more---the opposite of what decades of human deception research would predict. This inversion is consistent across all eight models tested, spanning four providers and diverse architectures.
+
+We further showed that the most successful AI deceivers are those whose behavior changes least between honest and deceptive roles. This ``best liars change least'' finding suggests that as AI systems become more capable, their deception may become progressively harder to detect through behavioral analysis.
+
+These results challenge the assumption that human deception findings transfer to AI systems and call for the development of AI-specific deception detection methods. We release our analysis code and processed dataset to support future research.\footnote{Code and data: \url{https://github.com/yui-sh/jinrou-paper}}
+
+\paragraph{Future work.} Promising extensions include a direct human comparison using the same game setup, longitudinal analysis of how deception patterns evolve as models are updated, and investigation of whether the deception strategy profiles identified in Section~\ref{sec:annotation} generalize to other social deduction games and adversarial settings.

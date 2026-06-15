@@ -1,0 +1,14 @@
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.pdf
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.600gf
+*.600pk
+*.tfm
+*.mf
+!figures/*.pdf

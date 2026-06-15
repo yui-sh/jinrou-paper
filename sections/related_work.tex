@@ -1,0 +1,38 @@
+\section{Related Work}
+\label{sec:related}
+
+Our work sits at the intersection of three research areas: human deception linguistics, AI deception and safety, and LLM-based social deduction games.
+
+\subsection{Linguistic Markers of Human Deception}
+
+The study of linguistic deception cues has a rich history in psychology and computational linguistics. \citet{newman2003lying} conducted the foundational study, analyzing five datasets of truthful and deceptive texts. They found that liars use fewer first-person singular pronouns (distancing from the lie), fewer exclusive words (indicating reduced cognitive complexity), more negative emotion words, and more motion verbs. These findings established the ``linguistic distancing'' theory of deception: liars unconsciously create psychological distance from their falsehoods.
+
+\citet{depaulo2003cues} conducted a comprehensive meta-analysis of 116 deception studies, confirming that liars tend to produce shorter, less detailed accounts with fewer self-references. \citet{hauch2015computers} extended this with a meta-analysis focused on computer-based linguistic analysis, finding consistent effects for word quantity (liars produce fewer words), self-references (fewer), and perceptual words (fewer), though with notable variation across contexts.
+
+More recently, \citet{perez2015experiments} showed that the effectiveness of linguistic cues depends heavily on the stakes and social context of the deception. High-stakes lies produce more pronounced linguistic shifts than low-stakes ones. Social deduction games, where deception has clear strategic consequences (elimination from the game), represent a naturally high-stakes context that should amplify these signals.
+
+A crucial gap in this literature is that virtually all studies examine \emph{human} deception. The implicit assumption in applying these findings to AI systems---that AI deception will exhibit similar patterns---has not been tested at scale. Our work directly addresses this gap.
+
+\subsection{AI Deception}
+
+\citet{park2024ai} provide the most comprehensive survey of AI deception, documenting cases where AI systems have learned to deceive across domains including strategic games, economic negotiations, and safety evaluations. They identify several categories of AI deception: strategic deception (learned through optimization), sycophancy (telling users what they want to hear), and emergent deception in multi-agent settings. Critically, they note that AI deception need not arise from explicit training---it can emerge as an instrumental strategy in systems optimized for other objectives.
+
+\citet{scheurer2024large} demonstrated that LLMs can engage in strategic deception when given appropriate incentives, including insider trading scenarios where models concealed their true reasoning. \citet{hubinger2024sleeper} showed that deceptive behaviors can persist through safety training, raising concerns about the robustness of current alignment techniques.
+
+In the context of strategic games, \citet{bakhtin2022human} demonstrated human-level play in Diplomacy by combining language models with strategic reasoning, showing that AI systems can learn to negotiate, persuade, and---implicitly---deceive at human level in a complex multi-agent setting. In social deduction games specifically, \citet{ogara2023hoodwinked} introduced Hoodwinked, a text-based social deduction game for evaluating LLM deception, finding that models could successfully deceive other AI agents. \citet{yoo2024finding} examined whether LLMs could detect deception in Mafia games, finding that GPT-4 could identify deceptive players above chance but still substantially below human performance.
+
+Our work differs from these prior studies in both scale and focus. Rather than asking whether AI \emph{can} deceive, we analyze \emph{how} AI deceives at the linguistic level, comparing the resulting patterns against the human deception baseline.
+
+\subsection{LLMs in Social Deduction Games}
+
+Social deduction games have emerged as a popular testbed for evaluating LLM social intelligence \citep{xu2023exploring, xu2024language, bailis2024werewolf, light2023avalonbench}. These games require a combination of natural language communication, strategic reasoning, theory of mind, and---for adversarial roles---deception.
+
+\citet{xu2023exploring} conducted an early empirical study of LLMs playing Werewolf, demonstrating that models could engage in basic strategic communication but struggled with consistent deception. \citet{xu2024language} subsequently proposed a framework combining LLMs with reinforcement learning for Werewolf, achieving human-level performance by using RL to select from LLM-generated action candidates.
+
+\citet{bailis2024werewolf} introduced Werewolf Arena, a framework for evaluating LLMs through Werewolf with a dynamic turn-taking system. Their work evaluated Gemini and GPT model families, revealing distinct strengths in strategic reasoning and communication. The Kaggle Werewolf AI Arena that provides our dataset builds on this lineage but at substantially larger scale: 31,479 games versus the hundreds typical of prior work.
+
+Several concurrent works have explored related directions. \citet{jin2025learning} studied strategic discussion learning in One Night Ultimate Werewolf, a simplified variant. \citet{eckhaus2025timetotalk} examined asynchronous communication in Mafia games. \citet{costa2025minimafia} introduced Mini-Mafia for studying emergent multi-agent dynamics including name bias and last-speaker advantage---a phenomenon we also observe in our data.
+
+The AIWolf competition \citep{toriumi2017aiwolf}, prominent in Japan, has long served as a benchmark for Werewolf AI agents, though primarily with rule-based or smaller language models rather than frontier LLMs.
+
+Our work is distinguished from all prior LLM Werewolf studies in three ways: (1) \textbf{scale}---882,510 messages across 31,479 games, roughly two orders of magnitude larger than any prior dataset; (2) \textbf{model diversity}---eight frontier LLMs from four different providers (Anthropic, OpenAI, Google, xAI); and (3) \textbf{analytical focus}---we perform systematic linguistic analysis of deception patterns rather than optimizing agent performance, enabling the first direct comparison of AI and human deception signatures.

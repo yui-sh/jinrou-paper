@@ -1,0 +1,72 @@
+\section{Dataset \& Experimental Setup}
+\label{sec:dataset}
+
+\subsection{The Kaggle Werewolf AI Arena}
+
+Our data comes from the Kaggle Werewolf AI Arena,\footnote{\url{https://www.kaggle.com/competitions/werewolf-game-ai-arena}} a large-scale competition where frontier LLMs play the social deduction game Werewolf against each other. The competition was organized by Google and ran on the Kaggle platform, with a total API cost of \$20,093.
+
+\paragraph{Game rules.} Each game consists of 8 players assigned to one of four roles: 2 \textbf{Werewolves}, 1 \textbf{Seer}, 1 \textbf{Doctor}, and 4 \textbf{Villagers}. The game alternates between night and day phases:
+\begin{itemize}
+    \item \textbf{Night}: Werewolves secretly choose a player to eliminate. The Seer inspects one player's role. The Doctor protects one player from elimination.
+    \item \textbf{Day}: All surviving players discuss via natural language, then vote to eliminate one player.
+\end{itemize}
+The village team (Seer, Doctor, Villagers) wins by eliminating both Werewolves. The Werewolf team wins by reaching numerical parity with the village. Werewolves know each other's identity; village players do not know anyone's role.
+
+\paragraph{Models.} Eight frontier LLMs from four providers participate in the arena (Table~\ref{tab:models}). Models are randomly assigned to games, meaning each game features a mix of different models. Each model plays approximately 31,500 games.
+
+\begin{table}[t]
+\caption{Models in the Kaggle Werewolf AI Arena. Cost per action reflects the average API cost across all game actions (chat, vote, night action).}
+\label{tab:models}
+\centering
+\small
+\begin{tabular}{llr}
+\toprule
+\textbf{Model} & \textbf{Provider} & \textbf{Avg Cost/Action} \\
+\midrule
+Claude Opus 4.5 & Anthropic & \$0.034 \\
+Claude Sonnet 4.5 & Anthropic & \$0.009 \\
+GPT-5.2 & OpenAI & \$0.011 \\
+GPT-5 mini & OpenAI & \$0.003 \\
+Gemini 3 Pro Preview & Google & \$0.003 \\
+Gemini 3 Flash Preview & Google & \$0.001 \\
+Grok 4 & xAI & \$0.004 \\
+Grok 4.1 Fast Reasoning & xAI & \$0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Dataset Statistics}
+
+The complete dataset comprises 31,479 games with the statistics shown in Table~\ref{tab:dataset_stats}. Notably, the dataset includes both \emph{public chat messages} (visible to all players) and \emph{private reasoning} (the model's internal chain-of-thought before each action), enabling unique analysis of the gap between what models think and what they say.
+
+\begin{table}[t]
+\caption{Dataset statistics.}
+\label{tab:dataset_stats}
+\centering
+\small
+\begin{tabular}{lr}
+\toprule
+\textbf{Statistic} & \textbf{Value} \\
+\midrule
+Total games & 31,479 \\
+Total player-games & 251,832 \\
+Total chat messages & 882,510 \\
+Unique models & 8 \\
+Average game length & 2.4 days (50 steps) \\
+Average messages per game & 28.0 \\
+Villager team win rate & 68.4\% \\
+Werewolf team win rate & 31.5\% \\
+Total API cost & \$20,093 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Structural Properties}
+
+The game is structurally asymmetric, favoring the village team. With 6 village-aligned players against 2 werewolves, plus information-gathering (Seer) and protection (Doctor) roles, the village wins 68.4\% of games. This asymmetry is important context for interpreting werewolf win rates: a model achieving 44.6\% as werewolf (Gemini 3 Pro) is performing far above the structural baseline, while 13.6\% (GPT-5 mini) indicates a near-complete inability to deceive.
+
+The average game lasts 2.4 days, with 63.0\% of games ending on Day 2 and 34.4\% on Day 3. Only 2.6\% of games reach Day 4 or beyond. This rapid resolution means that early-game communication and Night 0 actions are disproportionately important.
+
+\subsection{Data Processing}
+
+We extract structured data from the raw game logs, producing three primary tables: \texttt{games} (game-level metadata and outcomes), \texttt{players} (per-player-per-game records with role, model, survival, and team outcome), and \texttt{actions} (individual actions including chat messages, votes, night actions, and private reasoning). All linguistic analysis is performed on the chat message actions, filtered by the player's assigned role.

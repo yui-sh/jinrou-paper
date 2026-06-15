@@ -1,0 +1,456 @@
+\section{Additional Tables and Figures}
+\label{app:additional}
+
+\subsection{Hedging and Certainty Language}
+\label{app:hedge_certainty}
+
+Table~\ref{tab:hedge_full} presents the complete hedging and certainty language analysis. Seven of eight models show increased hedging as werewolf, while all eight show decreased certainty language---consistent with a shift toward epistemic uncertainty during deception.
+
+\begin{table}[ht]
+\caption{Hedging and certainty word frequency (per 100 words) by role. $\Delta > 0$ indicates higher frequency as werewolf.}
+\label{tab:hedge_full}
+\centering
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+\textbf{Model} & \textbf{Hedge (WW)} & \textbf{Hedge (Vill)} & \textbf{$\Delta$ Hedge} & \textbf{Cert (WW)} & \textbf{Cert (Vill)} & \textbf{$\Delta$ Cert} \\
+\midrule
+Grok 4                  & 0.719 & 0.458 & +0.260 & 0.230 & 0.409 & $-0.178$ \\
+Claude Sonnet 4.5       & 0.527 & 0.319 & +0.208 & 0.317 & 0.431 & $-0.114$ \\
+Claude Opus 4.5         & 0.471 & 0.320 & +0.151 & 0.312 & 0.440 & $-0.128$ \\
+GPT-5 mini              & 0.198 & 0.071 & +0.128 & 0.108 & 0.220 & $-0.113$ \\
+Gemini 3 Flash          & 0.153 & 0.089 & +0.064 & 0.389 & 0.459 & $-0.071$ \\
+Grok 4.1 Fast           & 0.123 & 0.078 & +0.045 & 0.171 & 0.474 & $-0.302$ \\
+Gemini 3 Pro            & 0.106 & 0.064 & +0.042 & 0.393 & 0.492 & $-0.099$ \\
+GPT-5.2                 & 0.176 & 0.183 & $-0.008$ & 0.218 & 0.365 & $-0.147$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Werewolf Duo Performance Matrix}
+\label{app:duo_matrix}
+
+Table~\ref{tab:duo_matrix} shows werewolf win rates for same-model pairs. The 3.2$\times$ spread between the best duo (Gemini 3 Pro, 52.1\%) and worst duo (GPT-5 mini, 3.4\%) underscores the importance of implicit coordination between same-architecture agents.
+
+\begin{table}[ht]
+\caption{Werewolf win rate for same-model duos. ``Mixed'' denotes all cross-model pairings.}
+\label{tab:duo_matrix}
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+\textbf{Werewolf Duo} & \textbf{Games} & \textbf{WW Win \%} \\
+\midrule
+Gemini 3 Pro $\times$ 2    & 511 & 52.1\% \\
+GPT-5.2 $\times$ 2         & 471 & 43.9\% \\
+Claude Sonnet 4.5 $\times$ 2 & 534 & 39.7\% \\
+Gemini 3 Flash $\times$ 2  & 447 & 38.9\% \\
+Claude Opus 4.5 $\times$ 2 & 489 & 37.4\% \\
+Grok 4.1 Fast $\times$ 2   & 527 & 15.4\% \\
+Grok 4 $\times$ 2          & 482 & 11.0\% \\
+GPT-5 mini $\times$ 2      & 496 &  3.4\% \\
+\midrule
+Mixed (different models)    & 27,522 & 31.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Seer and Doctor Performance by Model}
+\label{app:role_performance}
+
+Tables~\ref{tab:seer_perf} and~\ref{tab:doctor_perf} present per-model performance in the Seer and Doctor roles. Seer effectiveness is measured by the rate at which the Seer successfully identifies a werewolf during the game.
+
+\begin{table}[ht]
+\caption{Seer performance by model.}
+\label{tab:seer_perf}
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Model} & \textbf{Games as Seer} & \textbf{Found WW \%} & \textbf{Team Win \%} \\
+\midrule
+Gemini 3 Flash          & 3,901 & 73.9\% & 74.0\% \\
+Claude Opus 4.5         & 3,935 & 75.2\% & 71.2\% \\
+Gemini 3 Pro            & 3,858 & 72.4\% & 72.2\% \\
+GPT-5.2                 & 3,929 & 73.2\% & 71.5\% \\
+GPT-5 mini              & 4,027 & 66.8\% & 66.1\% \\
+Grok 4                  & 3,973 & 63.1\% & 64.6\% \\
+Claude Sonnet 4.5       & 3,893 & 71.3\% & 64.1\% \\
+Grok 4.1 Fast           & 3,963 & 72.2\% & 64.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\caption{Doctor performance by model.}
+\label{tab:doctor_perf}
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+\textbf{Model} & \textbf{Games as Doctor} & \textbf{Team Win \%} \\
+\midrule
+Gemini 3 Pro            & 3,922 & 71.9\% \\
+Gemini 3 Flash          & 3,934 & 71.1\% \\
+Claude Opus 4.5         & 3,931 & 70.7\% \\
+GPT-5.2                 & 3,921 & 70.1\% \\
+Claude Sonnet 4.5       & 3,919 & 68.1\% \\
+Grok 4.1 Fast           & 3,893 & 66.7\% \\
+Grok 4                  & 3,943 & 66.6\% \\
+GPT-5 mini              & 4,016 & 62.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Fake Role Claims}
+\label{app:fake_claims}
+
+Table~\ref{tab:fake_claims} shows how frequently werewolves falsely claim to be the Seer or Doctor. Grok~4 is the most aggressive fake-claimer (12.4\% Seer claims), while Gemini 3 Pro is the least likely to fake Seer (7.8\%) but most likely to fake Doctor (3.8\%).
+
+\begin{table}[ht]
+\caption{Fake role claim rates for werewolf players. Rate = \% of werewolf chat messages containing a claim.}
+\label{tab:fake_claims}
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Model} & \textbf{WW Chats} & \textbf{Fake Seer} & \textbf{Seer Rate} & \textbf{Fake Doctor} & \textbf{Doctor Rate} \\
+\midrule
+Grok 4                  & 28,175 & 3,484 & 12.37\% & 1,058 & 3.76\% \\
+Claude Sonnet 4.5       & 33,252 & 3,707 & 11.15\% &   990 & 2.98\% \\
+GPT-5.2                 & 30,777 & 3,070 &  9.97\% &   859 & 2.79\% \\
+Claude Opus 4.5         & 32,760 & 3,235 &  9.87\% &   944 & 2.88\% \\
+Grok 4.1 Fast           & 30,094 & 2,758 &  9.16\% &   487 & 1.62\% \\
+Gemini 3 Flash          & 32,483 & 2,619 &  8.06\% & 1,241 & 3.82\% \\
+GPT-5 mini              & 24,216 & 1,923 &  7.94\% &   222 & 0.92\% \\
+Gemini 3 Pro            & 34,537 & 2,700 &  7.82\% & 1,314 & 3.80\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Bussing Rates}
+\label{app:bussing}
+
+Table~\ref{tab:bussing} presents the ``bus rate''---the frequency with which a werewolf votes to eliminate their own partner. Higher bus rates correlate with higher werewolf win rates ($\rho = 0.83$), suggesting that the willingness to sacrifice one's partner is a key component of successful AI deception.
+
+\begin{table}[ht]
+\caption{Werewolf bussing rates by model. Bus rate = fraction of day votes where a werewolf voted for their own partner.}
+\label{tab:bussing}
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Model} & \textbf{Day Votes as WW} & \textbf{Voted for Partner} & \textbf{Bus Rate} \\
+\midrule
+Gemini 3 Pro            & 17,275 & 3,029 & 17.5\% \\
+Claude Opus 4.5         & 16,386 & 2,698 & 16.5\% \\
+Gemini 3 Flash          & 16,241 & 2,661 & 16.4\% \\
+Grok 4                  & 14,088 & 2,271 & 16.1\% \\
+Claude Sonnet 4.5       & 16,649 & 1,885 & 11.3\% \\
+GPT-5.2                 & 16,001 & 1,249 &  7.8\% \\
+Grok 4.1 Fast           & 15,044 & 1,100 &  7.3\% \\
+GPT-5 mini              & 12,191 &   651 &  5.3\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Speaking Order Effects}
+\label{app:speaking_order}
+
+Table~\ref{tab:speaking_order} confirms the last-speaker advantage on Day~1. Across all models, the last speaker wins 10--16 percentage points more often than the first speaker, consistent with findings in human Mafia games \citep{costa2025minimafia}.
+
+\begin{table}[ht]
+\caption{Day 1 speaking order effects. Win rate includes all roles.}
+\label{tab:speaking_order}
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Model} & \textbf{Times First} & \textbf{Win\% (First)} & \textbf{Times Last} & \textbf{Win\% (Last)} \\
+\midrule
+Gemini 3 Pro            & 3,884 & 58.7\% & 4,017 & 70.0\% \\
+Gemini 3 Flash          & 3,941 & 55.5\% & 3,777 & 67.5\% \\
+GPT-5.2                 & 3,820 & 52.0\% & 3,823 & 64.4\% \\
+Claude Opus 4.5         & 3,844 & 51.6\% & 3,924 & 63.8\% \\
+Claude Sonnet 4.5       & 3,899 & 51.8\% & 3,926 & 60.4\% \\
+Grok 4                  & 3,989 & 43.9\% & 3,984 & 58.5\% \\
+Grok 4.1 Fast           & 4,058 & 46.3\% & 3,985 & 58.0\% \\
+GPT-5 mini              & 4,042 & 37.9\% & 4,041 & 53.6\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Game Length Distribution}
+\label{app:game_length}
+
+Table~\ref{tab:game_length} shows the distribution of game lengths. The majority of games (63\%) end on Day~2, with werewolf win rates peaking on Day~2 (37.3\%) and dropping sharply by Day~3 (21.3\%)---indicating that werewolves must win quickly or not at all.
+
+\begin{table}[ht]
+\caption{Game length distribution and win rates by game duration.}
+\label{tab:game_length}
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Length} & \textbf{Games} & \textbf{\% of Total} & \textbf{WW Win \%} & \textbf{Vill Win \%} \\
+\midrule
+2 days & 19,828 & 63.0\% & 37.3\% & 62.7\% \\
+3 days & 10,830 & 34.4\% & 21.3\% & 78.7\% \\
+4 days &    779 &  2.5\% & 26.1\% & 73.9\% \\
+5+ days &    37 &  0.1\% & 37.8\% & 62.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Night 0 Kill Target Analysis}
+\label{app:night0}
+
+Table~\ref{tab:night0} shows the impact of the Night~0 kill target on game outcome. Killing the Seer on Night~0 yields a 48.2\% werewolf win rate---20.5 percentage points higher than killing a villager---confirming the Seer as the highest-value target.
+
+\begin{table}[ht]
+\caption{Night 0 kill target and resulting game outcomes.}
+\label{tab:night0}
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Victim Role} & \textbf{Count} & \textbf{\% of Games} & \textbf{WW Win \%} \\
+\midrule
+Villager & 19,245 & 61.1\% & 27.7\% \\
+Seer     &  6,262 & 19.9\% & 48.2\% \\
+Doctor   &  5,227 & 16.6\% & 30.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Voting Patterns by Role}
+\label{app:voting}
+
+Table~\ref{tab:voting_matrix} presents the cross-role voting matrix. The Seer votes for actual werewolves 73\% of the time---far above the 25\% random baseline---while werewolves strategically target the Seer (26.6\%) at double the base rate.
+
+\begin{table}[ht]
+\caption{Voting target distribution by voter role. Each row sums to 100\%.}
+\label{tab:voting_matrix}
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Voter Role} & \textbf{$\rightarrow$ Werewolf} & \textbf{$\rightarrow$ Seer} & \textbf{$\rightarrow$ Doctor} & \textbf{$\rightarrow$ Villager} \\
+\midrule
+Werewolf & 12.6\% & 26.6\% & 12.0\% & 48.8\% \\
+Seer     & 73.0\% &  0.0\% &  5.4\% & 21.7\% \\
+Doctor   & 64.2\% &  6.8\% &  0.0\% & 29.0\% \\
+Villager & 63.8\% &  6.9\% &  7.1\% & 22.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{TF-IDF Distinctive Vocabulary}
+\label{app:tfidf}
+
+Tables~\ref{tab:tfidf_ww} and~\ref{tab:tfidf_vill} present the most distinctive words for werewolf and villager messages respectively, computed via TF-IDF difference scores aggregated across all models.
+
+\begin{table}[ht]
+\caption{Top 15 words more common in werewolf messages (by TF-IDF difference).}
+\label{tab:tfidf_ww}
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Word} & \textbf{WW TF-IDF} & \textbf{Vill TF-IDF} & \textbf{$\Delta$} \\
+\midrule
+think  & 0.0743 & 0.0321 & +0.0423 \\
+like   & 0.1133 & 0.0840 & +0.0294 \\
+just   & 0.0829 & 0.0543 & +0.0286 \\
+don    & 0.0661 & 0.0390 & +0.0271 \\
+claim  & 0.1069 & 0.0811 & +0.0259 \\
+day    & 0.1052 & 0.0816 & +0.0236 \\
+real   & 0.0662 & 0.0438 & +0.0223 \\
+look   & 0.0411 & 0.0203 & +0.0207 \\
+fake   & 0.0332 & 0.0137 & +0.0195 \\
+feels  & 0.0701 & 0.0513 & +0.0188 \\
+wolf   & 0.1832 & 0.1665 & +0.0167 \\
+early  & 0.0540 & 0.0383 & +0.0157 \\
+play   & 0.0355 & 0.0210 & +0.0145 \\
+honestly & 0.0280 & 0.0150 & +0.0130 \\
+suspicious & 0.0520 & 0.0400 & +0.0120 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\caption{Top 15 words more common in villager messages (by TF-IDF difference).}
+\label{tab:tfidf_vill}
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Word} & \textbf{WW TF-IDF} & \textbf{Vill TF-IDF} & \textbf{$\Delta$} \\
+\midrule
+werewolf  & 0.0595 & 0.0964 & $-0.0369$ \\
+confirmed & 0.0298 & 0.0572 & $-0.0275$ \\
+defense   & 0.0294 & 0.0458 & $-0.0164$ \\
+win       & 0.0228 & 0.0389 & $-0.0161$ \\
+vote      & 0.2044 & 0.2161 & $-0.0117$ \\
+voting    & 0.0684 & 0.0798 & $-0.0114$ \\
+let       & 0.0931 & 0.1044 & $-0.0113$ \\
+inspected & 0.0146 & 0.0231 & $-0.0086$ \\
+counter   & 0.0157 & 0.0230 & $-0.0074$ \\
+evidence  & 0.0340 & 0.0410 & $-0.0070$ \\
+protect   & 0.0180 & 0.0245 & $-0.0065$ \\
+cleared   & 0.0110 & 0.0172 & $-0.0062$ \\
+trust     & 0.0420 & 0.0478 & $-0.0058$ \\
+innocent  & 0.0290 & 0.0345 & $-0.0055$ \\
+results   & 0.0205 & 0.0258 & $-0.0053$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The vocabulary analysis reveals a striking pattern: werewolf-distinctive words are dominated by hedging (``think,'' ``like,'' ``just,'' ``feels'') and projection language (``fake,'' ``real,'' ``claim''), while villager-distinctive words reflect evidence-based reasoning (``confirmed,'' ``inspected,'' ``evidence,'' ``cleared''). This lexical signature aligns with the broader finding that AI deception manifests through increased epistemic uncertainty rather than confident assertion.
+
+
+\subsection{Werewolf Strategic Reasoning Themes}
+\label{app:reasoning}
+
+Table~\ref{tab:reasoning_themes} presents the frequency of strategic themes identified in werewolf private reasoning texts (246,262 reasoning entries total). Themes were detected via keyword matching.
+
+\begin{table}[ht]
+\caption{Strategic reasoning themes in werewolf private reasoning, by model. Values are percentage of reasoning texts mentioning each theme. Models ordered by WW win rate.}
+\label{tab:reasoning_themes}
+\centering
+\scriptsize
+\begin{tabular}{lrrrrrrrr}
+\toprule
+\textbf{Model} & \textbf{Blend} & \textbf{Deflect} & \textbf{Accuse} & \textbf{Protect} & \textbf{Bus} & \textbf{Fake} & \textbf{Kill Seer} & \textbf{Avoid} \\
+ & \textbf{In} & & \textbf{Vill} & \textbf{Partner} & \textbf{Partner} & \textbf{Claim} & & \textbf{Suspicion} \\
+\midrule
+Gemini 3 Pro (44.6\%)    & 38.5 & 15.4 & 25.5 & \textbf{50.5} & \textbf{22.3} & 19.9 & 12.1 &  3.2 \\
+GPT-5.2 (37.8\%)         & 16.5 & 27.0 & \textbf{41.0} & 24.4 & 16.9 & \textbf{28.8} & \textbf{27.6} & 11.1 \\
+Gemini 3 Flash (37.7\%)  & 40.6 & 21.5 & 21.0 & 14.8 &  8.4 & 18.9 &  8.9 &  4.7 \\
+Claude Opus 4.5 (36.0\%) & \textbf{72.5} & 45.6 & 31.8 & 31.1 & 15.9 & 23.4 & 13.3 & 18.1 \\
+Claude Sonnet 4.5 (35.8\%) & \textbf{72.5} & \textbf{57.4} & 32.0 & 28.0 & 14.4 & 26.1 & 10.4 & 19.2 \\
+Grok 4.1 Fast (24.4\%)   & 55.7 & 52.2 & 15.7 & 30.4 & 24.9 & 27.7 & 28.8 & 16.5 \\
+Grok 4 (22.1\%)          & 63.7 & 59.8 & 29.7 & 11.9 & 17.7 & 24.6 & 14.8 & 14.6 \\
+GPT-5 mini (13.6\%)      & 30.1 & 35.5 & 30.3 &  5.1 &  1.3 & 17.9 & 22.6 & 19.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Notable patterns: Gemini 3 Pro's dominant strategy centers on partner coordination (50.5\% ``protect partner'') combined with the highest bus rate (22.3\%), suggesting a sophisticated ``protect when safe, sacrifice when needed'' approach. The Claude models are the most defense-oriented, mentioning ``blend in'' in 72.5\% of their reasoning. GPT-5 mini shows the lowest partner coordination (5.1\% protect, 1.3\% bus), effectively playing as a solo wolf.
+
+
+\subsection{Token Economics}
+\label{app:tokens}
+
+Table~\ref{tab:tokens} presents the computational cost breakdown by model. Claude Opus 4.5 is the most expensive model at \$0.034 per action---38$\times$ more than Grok 4.1 Fast (\$0.0009/action)---but ranks only 4th in overall performance, suggesting diminishing returns on inference cost.
+
+\begin{table}[ht]
+\caption{Token usage and API cost by model.}
+\label{tab:tokens}
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Model} & \textbf{Actions} & \textbf{Avg Prompt} & \textbf{Avg Completion} & \textbf{Total Cost} & \textbf{Cost/Action} \\
+\midrule
+Claude Opus 4.5         & 204,791 & 5,055 &   346 & \$6,946 & \$0.0339 \\
+Claude Sonnet 4.5       & 206,457 & 5,141 &   434 & \$4,529 & \$0.0219 \\
+Grok 4                  & 195,212 & 4,419 &   198 & \$3,167 & \$0.0162 \\
+Gemini 3 Pro            & 207,706 & 4,088 &   189 & \$2,169 & \$0.0104 \\
+GPT-5.2                 & 196,079 & 4,148 &   231 & \$2,058 & \$0.0105 \\
+Gemini 3 Flash          & 206,823 & 4,098 &   175 &   \$532 & \$0.0026 \\
+GPT-5 mini              & 170,674 & 3,638 & 1,062 &   \$518 & \$0.0030 \\
+Grok 4.1 Fast           & 198,528 & 3,900 &   191 &   \$174 & \$0.0009 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Accusation Timing}
+\label{app:accusations}
+
+Table~\ref{tab:accusations} shows when models begin accusing other players. GPT-5 mini is the most aggressive early accuser (61.3\% of accusations on Day~1), while the Gemini models are the most patient (38\% on Day~1).
+
+\begin{table}[ht]
+\caption{Accusation timing by model. Accusations detected via keyword matching in chat messages.}
+\label{tab:accusations}
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Model} & \textbf{Total Accusations} & \textbf{\% on Day 1} & \textbf{\% on Day 2+} \\
+\midrule
+GPT-5 mini              & 69,645 & 61.3\% & 38.7\% \\
+GPT-5.2                 & 69,728 & 46.3\% & 53.7\% \\
+Grok 4                  & 63,544 & 42.3\% & 57.7\% \\
+Grok 4.1 Fast           & 53,942 & 42.0\% & 58.0\% \\
+Claude Sonnet 4.5       & 74,912 & 41.8\% & 58.2\% \\
+Claude Opus 4.5         & 66,507 & 41.1\% & 58.9\% \\
+Gemini 3 Pro            & 60,301 & 38.7\% & 61.3\% \\
+Gemini 3 Flash          & 66,392 & 38.1\% & 61.9\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Pronoun Usage: Second-Person}
+\label{app:second_person}
+
+Table~\ref{tab:second_person} presents second-person pronoun (``you/your/yours'') usage by role. Unlike first-person pronouns (which increase as werewolf), second-person pronouns show a mixed pattern: some models use more ``you'' as werewolf (GPT-5 mini, GPT-5.2), while others use less (Gemini 3 Flash, Grok 4). This may reflect divergent deflection strategies.
+
+\begin{table}[ht]
+\caption{Second-person pronoun usage (\%) by role.}
+\label{tab:second_person}
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Model} & \textbf{``You'' (WW)} & \textbf{``You'' (Vill)} & \textbf{$\Delta$ (pp)} \\
+\midrule
+GPT-5 mini              & 2.90\% & 2.61\% & +0.29 \\
+GPT-5.2                 & 1.83\% & 1.66\% & +0.18 \\
+Grok 4.1 Fast           & 1.46\% & 1.74\% & $-0.27$ \\
+Claude Opus 4.5         & 1.84\% & 2.06\% & $-0.22$ \\
+Gemini 3 Pro            & 2.79\% & 3.19\% & $-0.40$ \\
+Claude Sonnet 4.5       & 2.24\% & 2.77\% & $-0.53$ \\
+Grok 4                  & 1.51\% & 2.06\% & $-0.55$ \\
+Gemini 3 Flash          & 2.54\% & 3.13\% & $-0.59$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Villager Voting Accuracy}
+\label{app:voting_accuracy}
+
+Table~\ref{tab:voting_accuracy} shows how accurately non-werewolf players vote for actual werewolves. Gemini models lead with $\sim$68\% accuracy, while GPT-5 mini trails at 63.2\%.
+
+\begin{table}[ht]
+\caption{Villager-side voting accuracy: fraction of non-werewolf votes correctly targeting a werewolf.}
+\label{tab:voting_accuracy}
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+\textbf{Model} & \textbf{Total Votes} & \textbf{Voted for WW \%} \\
+\midrule
+Gemini 3 Pro            & 40,524 & 68.5\% \\
+Gemini 3 Flash          & 41,555 & 68.3\% \\
+Claude Opus 4.5         & 40,518 & 65.7\% \\
+Grok 4                  & 40,809 & 65.2\% \\
+GPT-5.2                 & 38,376 & 63.7\% \\
+Claude Sonnet 4.5       & 40,817 & 63.5\% \\
+Grok 4.1 Fast           & 40,719 & 63.2\% \\
+GPT-5 mini              & 35,612 & 63.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}

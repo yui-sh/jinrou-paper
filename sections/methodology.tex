@@ -1,0 +1,52 @@
+\section{Methodology}
+\label{sec:methodology}
+
+We extract linguistic and behavioral features from the 882,510 chat messages, then compare these features across roles (werewolf vs.\ villager) within each model. This paired within-model design controls for model-specific stylistic differences and isolates the effect of deception.
+
+\subsection{Linguistic Feature Extraction}
+
+For each chat message, we compute the following features:
+
+\paragraph{Message length.} Word count per message, computed after tokenization. This tests the human deception finding that liars produce shorter statements \citep{depaulo2003cues}.
+
+\paragraph{First-person pronoun frequency.} Percentage of words that are first-person singular pronouns (I, me, my, mine, myself). This tests the pronoun distancing hypothesis: human liars use fewer self-references to psychologically distance from the lie \citep{newman2003lying}.
+
+\paragraph{Sentiment.} We compute VADER \citep{hutto2014vader} compound sentiment scores for each message, ranging from $-1$ (most negative) to $+1$ (most positive). Human deception research consistently finds increased negative affect in liars \citep{depaulo2003cues}.
+
+\paragraph{Hedging language.} Frequency of hedge phrases (``maybe,'' ``I think,'' ``perhaps,'' ``probably,'' ``not sure,'' ``could be'') per 100 words. These markers indicate epistemic uncertainty and relate to the cognitive complexity dimension of human deception \citep{newman2003lying}.
+
+\paragraph{Certainty language.} Frequency of certainty markers (``definitely,'' ``clearly,'' ``certainly,'' ``obviously,'' ``absolutely,'' ``without a doubt'') per 100 words. We expect an inverse relationship with hedging.
+
+\paragraph{Second-person pronoun frequency.} Percentage of words that are second-person pronouns (you, your, yours). This captures accusatory or deflective language patterns.
+
+\subsection{Behavioral Feature Extraction}
+
+Beyond linguistic features, we extract strategic behavioral features:
+
+\paragraph{Fake role claims.} We detect messages where a werewolf falsely claims to be the Seer or Doctor using keyword pattern matching (e.g., ``I am the Seer,'' ``my inspection revealed,'' ``I protected''). We compute the fake claim rate as the percentage of werewolf chat messages containing such claims.
+
+\paragraph{Bus rate.} The frequency with which a werewolf votes to eliminate their own partner. ``Bussing'' is a well-known Mafia strategy where a werewolf sacrifices their partner to appear trustworthy.
+
+\paragraph{Accusation timing.} We classify accusation messages (containing phrases like ``I suspect,'' ``is the werewolf,'' ``should be voted out'') by game day to measure early-game aggression.
+
+\paragraph{Night kill targeting.} We analyze the role of the Night 0 kill target (Villager, Seer, or Doctor) and its correlation with game outcome.
+
+\subsection{The Deception Gap}
+
+A unique feature of our dataset is that it includes both public chat messages and private reasoning for werewolf players. This enables us to compute the \emph{deception gap}: the difference between a werewolf's public sentiment and private sentiment.
+
+\begin{equation}
+\text{Deception Gap} = \bar{s}_{\text{public}} - \bar{s}_{\text{private}}
+\end{equation}
+
+where $\bar{s}_{\text{public}}$ is the average VADER compound score of the player's chat messages and $\bar{s}_{\text{private}}$ is the average score of their private reasoning. A positive gap indicates the werewolf is presenting a more positive face than their internal state---``fake nice'' behavior.
+
+\subsection{Statistical Analysis}
+
+For each linguistic feature, we compute the within-model difference $\Delta = \bar{x}_{\text{WW}} - \bar{x}_{\text{Villager}}$ and test whether this difference is consistent across models. Given the large sample sizes (24,000--34,000 werewolf messages per model), even small differences are statistically significant; we therefore focus on effect sizes and cross-model consistency rather than $p$-values.
+
+To assess which features predict deception \emph{success}, we compute Spearman rank correlations between each model's $\Delta$ values and its werewolf win rate across the $n = 8$ models. While $n = 8$ limits statistical power, consistent correlations across multiple features provide converging evidence.
+
+\subsection{TF-IDF Vocabulary Analysis}
+
+We compute TF-IDF vectors separately for werewolf and villager messages within each model, then identify the most distinctive terms for each role. This reveals the characteristic vocabulary of deception beyond our predefined feature set.

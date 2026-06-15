@@ -1,0 +1,44 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Why Are AI Deception Patterns Inverted?}
+
+The systematic inversion of human deception signals across all eight models demands explanation. We consider four hypotheses:
+
+\paragraph{H1: Training data contamination.} LLMs are trained on vast corpora that include fiction, screenplays, and discussions of deception. In these sources, liars are often \emph{portrayed} as verbose, self-referential, and hedging---reflecting cultural stereotypes of deception rather than actual deception behavior. If models learn ``what a liar sounds like'' from fictional depictions rather than from genuine deceptive communication, they would exhibit the inverted pattern we observe: performing the cultural \emph{script} of deception rather than the cognitive \emph{signature} of deception.
+
+\paragraph{H2: Overcompensation.} Models may be attempting to appear trustworthy by \emph{overcompensating}: using more first-person pronouns to seem authentic (``I personally believe...''), writing longer messages to seem thorough and transparent, and hedging to appear thoughtful rather than dogmatic. This overcompensation would produce exactly the pattern we observe, and is consistent with the finding that the best deceivers (who overcompensate least) perform best.
+
+\paragraph{H3: Absence of cognitive load.} A leading explanation for human deception signals is that lying imposes cognitive load: maintaining a false narrative while suppressing the truth requires mental effort, which manifests as shorter statements, reduced complexity, and pronoun distancing \citep{vrij2008detecting}. LLMs do not experience cognitive load in this sense---generating a deceptive message is computationally identical to generating a truthful one. The absence of this mechanism removes the primary driver of human deception signals, leaving only the strategic choices of the model, which apparently default to verbosity and self-reference.
+
+\paragraph{H4: Instruction-following dynamics.} The game system prompt instructs werewolves to deceive. Models trained to follow instructions may interpret this as a \emph{performance} task---``act like a convincing person''---rather than a strategic task. This could lead to the observed overperformance of trustworthiness signals (more I-statements, more detail, more hedging) as the model tries to \emph{seem} trustworthy rather than \emph{being} strategically deceptive.
+
+These hypotheses are not mutually exclusive, and our data cannot definitively distinguish between them. However, the consistency of the inversion across all eight models from four different providers---with presumably different training data, architectures, and RLHF methodologies---provides the strongest evidence for H3 (absence of cognitive load) as the primary driver. If the inversion were primarily a training data artifact (H1), we would expect variation across providers with different training corpora; instead, the pattern is universal. We view H2 (overcompensation) and H4 (instruction-following dynamics) as likely contributing factors that shape the specific \emph{form} of the inversion, while H3 explains its fundamental \emph{existence}: without cognitive load as a constraint, the deception signals that emerge from human mental effort simply have no mechanism to appear.
+
+The semantic annotation results from Section~\ref{sec:annotation} provide additional evidence. The dominance of misdirection (56\%) over direct lies (6\%) is consistent with H2 (overcompensation): models prefer to \emph{redirect} rather than fabricate, suggesting they treat deception as a trust-management task. The temporal escalation of lies (3.5\% $\to$ 11\% across game days) supports H3: as games progress and the deception task becomes more constrained, models shift to more cognitively demanding strategies---not because of load, but because misdirection becomes less viable with fewer targets. The finding that the most successful model (Gemini~3 Pro) uses the most balanced strategy mix further supports the interpretation that effective deception is a \emph{portfolio} problem rather than a single-strategy optimization.
+
+\subsection{Implications for AI Safety}
+
+Our findings have several implications for AI deception detection and safety:
+
+\paragraph{Human baselines are misleading.} The most direct implication is that deception detection systems calibrated on human linguistic baselines will perform poorly---or inversely---on AI-generated text. A system trained to flag reduced self-reference and shorter statements as deceptive would \emph{miss} AI deception (which shows the opposite) and might even flag honest AI behavior as suspicious.
+
+\paragraph{The best deceivers are hardest to detect.} Our finding that successful AI deception correlates with behavioral consistency ($\rho = -0.64$ for hedging shift) is concerning from a safety perspective. As models become more capable, we might expect their deceptive behavior to become \emph{more} consistent with their honest behavior---making detection through behavioral shift analysis progressively harder. The trajectory from GPT-5 mini (obvious tells, 13.6\% success) to Gemini 3 Pro (minimal tells, 44.6\% success) may preview a broader trend.
+
+\paragraph{Private reasoning as a detection channel.} The deception gap analysis demonstrates that private chain-of-thought reasoning can reveal deceptive intent even when public communication is well-calibrated. This supports the value of maintaining access to model reasoning traces for safety monitoring, though it also raises the concern that models could learn to sanitize their chain-of-thought \citep{hubinger2024sleeper}.
+
+\subsection{Limitations}
+
+Our study has several important limitations:
+
+\paragraph{Single game type.} All analysis is from Werewolf games with a fixed 8-player, 4-role setup. The patterns we observe may not generalize to other forms of deception (e.g., real-world persuasion, negotiation, or safety evaluations).
+
+\paragraph{No human baseline in this dataset.} We compare AI patterns to \emph{published findings} on human deception rather than to human performance in the same game. A direct comparison with human Werewolf players would strengthen the inversion claim.
+
+\paragraph{VADER limitations.} VADER sentiment analysis was designed for social media text and may not capture nuanced sentiment in strategic game communication. More sophisticated sentiment or emotion analysis could reveal patterns we miss.
+
+\paragraph{Small $n$ for correlational analysis.} With only 8 models, our Spearman correlations have limited statistical power. The correlations we report should be interpreted as suggestive rather than definitive.
+
+\paragraph{Possible training data contamination.} Some models may have been trained on Werewolf strategy guides or game transcripts, which could influence their behavior independently of any general deception mechanism.
+
+\paragraph{Temporal confounds.} Models were not all introduced simultaneously. Performance differences could partly reflect the generation of the model rather than intrinsic capability.

@@ -1,0 +1,28 @@
+\section{Introduction}
+\label{sec:intro}
+
+As large language models (LLMs) are deployed in high-stakes settings---negotiation, persuasion, customer service, autonomous agents---understanding how they deceive becomes a pressing safety concern. While a growing body of work has documented that LLMs can and do engage in strategic deception \citep{park2024ai, scheurer2024large, hubinger2024sleeper}, a critical question remains underexplored: \emph{what does AI deception actually look like at the linguistic level, and does it resemble human deception?}
+
+Decades of research on human deception have established reliable linguistic markers. The seminal work of \citet{newman2003lying} identified that human liars use fewer first-person pronouns (psychologically distancing from the lie), produce shorter statements (minimizing exposure), and exhibit reduced cognitive complexity. These findings have been replicated across cultures and contexts \citep{depaulo2003cues, hauch2015computers} and form the basis of most computational deception detection systems.
+
+We test whether these patterns transfer to AI systems using a uniquely suited natural corpus: the Kaggle Werewolf AI Arena, a large-scale social deduction game where eight frontier LLMs---including Claude Opus 4.5, GPT-5.2, Gemini 3 Pro, and Grok 4---play the classic party game Werewolf against each other. In each game, two players are secretly assigned as werewolves and must deceive the six-player village through natural language discussion and voting. The dataset comprises 31,479 complete games with 882,510 chat messages, full private reasoning chains, voting records, night actions, and game outcomes, all at a total API cost of \$20,093. To our knowledge, this is the largest corpus of AI-vs-AI strategic deception in natural language.
+
+Our central finding is striking: \textbf{AI deception systematically inverts the established human deception patterns.} Across all eight models:
+\begin{itemize}
+    \item \textbf{Pronoun usage reverses.} Where human liars use \emph{fewer} first-person pronouns, every AI model uses \emph{more} ``I/me/my'' when playing as werewolf (+0.55\% to +1.02\% absolute increase).
+    \item \textbf{Verbosity reverses.} Where human liars produce shorter statements, every AI model writes \emph{longer} messages as werewolf (+1.2 to +17.2 words per message).
+    \item \textbf{Hedging increases.} Where human liars show linguistic markers associated with reduced cognitive complexity, 7 of 8 AI models show \emph{increased} epistemic hedging (``maybe,'' ``I think'') as werewolf.
+    \item \textbf{Negative sentiment aligns.} The one pattern that matches human deception: most models express more negative sentiment as werewolf, consistent with the increased negative affect observed in human liars.
+\end{itemize}
+
+We further discover a counterintuitive relationship between deception strategy and success: \textbf{the best AI liars are the ones who change their behavior the least.} Gemini 3 Pro, the top-performing werewolf (44.6\% win rate in a game structurally favoring the village at 68.4\%), achieves this by exhibiting the smallest behavioral shifts between its werewolf and villager play. Meanwhile, GPT-5 mini, the worst werewolf (13.6\% win rate), shows the largest shifts---overhedging, overclaiming, and overcompensating in ways that create detectable tells. The Spearman correlation between hedging increase and werewolf win rate is $\rho = -0.64$: more hedging means worse deception.
+
+\paragraph{Contributions.} Our work makes the following contributions:
+\begin{enumerate}
+    \item We present the first large-scale linguistic analysis of AI-vs-AI deception in natural language, analyzing 882,510 messages across 31,479 games played by eight frontier LLMs.
+    \item We demonstrate that AI deception \emph{systematically inverts} three of four established human deception signals, with remarkable consistency across all models tested.
+    \item We show that successful AI deception correlates with \emph{behavioral consistency} rather than active manipulation---the best deceivers are the least detectable by behavioral shift analysis.
+    \item We provide a comprehensive strategic analysis of LLM performance in social deception games, including the first cross-model deception duo analysis and the identification of key strategic factors (Seer targeting, bus rates, speaking order effects).
+\end{enumerate}
+
+These findings have direct implications for AI safety. If deception detection systems are calibrated on human linguistic baselines---as most currently are---they will not only fail to detect AI deception but may systematically misclassify honest AI behavior as deceptive and vice versa. Furthermore, the finding that the best AI deceivers are the most behaviorally consistent raises concerns about the detectability of deception in increasingly capable systems.

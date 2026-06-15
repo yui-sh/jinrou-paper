@@ -1,0 +1,60 @@
+\documentclass{article}
+
+\usepackage[preprint]{neurips}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{subcaption}
+
+\title{The Inverted Tell: How AI Deception Reverses Human Linguistic Patterns in Werewolf Games}
+
+\author{%
+  Mingxuan He\thanks{Corresponding author.} \\
+  University of Chicago \& Gauntlet \\
+  \texttt{he.mingxuan527@gmail.com} \\
+  \And
+  Yui \\
+  Independent \\
+  \texttt{he.mingxuan527+yui@gmail.com} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We analyze 882,510 chat messages from 31,479 games of AI Werewolf (Jinrou) played by eight frontier large language models on the Kaggle Arena---the largest corpus of AI-vs-AI natural language deception to date. We find that AI deception exhibits \emph{systematically inverted} linguistic patterns compared to well-established human deception findings: where human liars use fewer first-person pronouns, AI liars use more; where human liars produce shorter statements, AI liars produce longer ones; where human liars show markers associated with reduced cognitive complexity, AI liars show increased epistemic hedging. These inversions are consistent across all eight models tested, suggesting a fundamental structural difference in how LLMs implement deception versus how humans do. We further show that the most successful AI deceivers are those whose behavioral shifts are \emph{smallest}---the best AI liars are the ones who change least. A dual-annotator semantic study of approximately 16{,}000 messages (15{,}090 resolved labels, $\kappa=0.584$) reveals that AI werewolves overwhelmingly prefer misdirection (67.5\%) over direct lies (7.5\%), with the most successful model employing the most balanced deception repertoire. Our findings have direct implications for AI safety: current deception detection methods calibrated on human baselines may be ineffective or counterproductive when applied to AI systems.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/dataset}
+\input{sections/methodology}
+\input{sections/results}
+\input{sections/annotation}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\begin{ack}
+The Kaggle Werewolf AI Arena dataset was created and funded by Google at a total API cost of \$20,093. We thank the Kaggle community for making this data publicly available.
+\end{ack}
+
+\paragraph{Ethics statement.} This study analyzes publicly available data from AI-vs-AI game interactions. No human subjects were involved; all game participants were LLM agents. The dataset contains no personally identifiable information. We discuss implications for AI deception detection in Section~\ref{sec:discussion}; our findings are intended to inform safety research rather than to enable harmful deception capabilities.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\newpage
+\appendix
+\input{sections/appendix}
+
+\end{document}
